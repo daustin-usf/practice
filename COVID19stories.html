@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<!-- My practice is based on Dr. Drobisz's Sandbox 8 example of JavaScript arrays and loops, XML file load -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Week 8 Arrays: Call for COVID-19 Stories</title>
+    <style>
+        #container {
+            margin-top: 5%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        /* using CSS box model */
+        #details {
+            height: 50px;
+            text-align: center;
+            font-size: medium;
+        }
+
+        /* using CSS box model */
+        #output {
+            border: 15px;
+            padding: 20px;
+            margin: 20px;
+            margin-top: 1%;
+            text-align: center;
+            font-size: x-large;
+        }
+    </style>
+    <script>
+        var situation = new Array(); // this is a global variable for symptom defnitions
+        var locations = new Array(); // this is a global array for location factor definitions
+
+        // Symptom Object definition
+        function Symptom(id, weight, name, label, description) {
+            this.id = id;
+            this.weight = weight;
+            this.name = name;
+            this.label = label;
+            this.description = description;
+        }
+        // location Object definition
+        function location(id, weight, name, label, description) {
+            this.id = id;
+            this.weight = weight;
+            this.name = name;
+            this.label = label;
+            this.description = description;
+        }
+        // Patient Object definition
+        function Patient(fm) {
+            // constructor
+            this.symptom = new Array(); // array of true/false values corresponding to situation
+            this.location = new Array(); // array of true/false vales corresponding to location factors
+
+            this.name = fm.name.value;
+            this.email = fm.email.value;
+            this.age = Number(fm.age.value);
+            /*  since syptom and riks checkboxes are now created dynamically,
+                we will use arrays instead of variables to store this data
+            */
+            // extract a list of checkboxes from the div
+            var list_symptom = document.querySelectorAll("#container_situation input[type='checkbox']");
+            // traverse the list and set patient's symptom to true/false value
+            for (var x=0; x < list_symptom.length; x++) {
+                this.symptom[x] = list_symptom[x].checked;
+            }
+            // do the same for locations
+            var list_location = document.querySelectorAll("#container_locations input[type='checkbox']");
+            // traverse the list and set patient's location to true/false value
+            for (var x=0; x < list_location.length; x++) {
+                this.location[x] = list_location[x].checked;
+            }
+            //console.log(this.symptom);
+            //console.log(this.location);
+
+            // return potential severity color of this case
+            this.severity = function () {
+                // if all three situation and any one of location factors are present
+                if (this.symptom[0] && this.symptom[1] && this.symptom[2] && (this.location[0] || this.location[1])) {
+                    return "#e99883"; // high red
+                    // if all three situation are present but NOT the location factors
+                } else if (this.symptom[0] && this.symptom[1] && this.symptom[2] && !(this.location[0] || this.location[1])) {
+                    return "#f1f0a3"; // medium yellow
+                    // if any of the situation are present
+                } else if (this.symptom[0] || this.symptom[1] || this.symptom[2]) {
+                    return "#caeeca"; // low green
+                } else { // gray
+                    return "#dddddd";
+                }
+            }
+            // return recommendation text
+            this.diagnose = function () {
+                /*  NOTE: We have changed the initial code to load situation and locationS from an XML file.
+                    The original logic below hasn't changed and it EXPECTS:
+                        symptom [0]=fever, [1]=cough, [2]=breath, AND location [0]=travel, [1]=contact.
+                    All other locations are currently not used to determin threat levels and make recommendations.
+
+                    The following logic/code would have to change accomodate a variable (and potentially large) number of situation and locationS as mentioned in class.
+                    One possible approach would be to use weights with decision trees.
+                    Another approach might involve deep learning with neural networks.
+                    Both of these are advanced topics which will not be covered in this course, but are worth exploring by those students who are interested in pursuing software development careers.
+
+                    I will leave any modificatios of this method to student who are ready for this type of challenge.
+                */
+
+                // if NONE of situation are present but they have been potentially exposed
+                if (!(this.symptom[0] || this.symptom[1] || this.symptom[2]) && this.location[1]) {
+                    return "You do not show any situation, however, if you suspect that you might have been exposed to COVID-19 then please contact your local authories or call the CDC COVID-19 hotline at 555-555-5555.";
+                }
+                // if all three situation and any one of the location factors are present
+                if (this.symptom[0] && this.symptom[1] && this.symptom[2] && (this.location[0] || this.location[1])) {
+                    if (this.age == 65) { // elderly are at much higher location
+                        return "Call your local emergency services immediately!";
+                    } else {
+                        return "Call the CDC COVID-19 hotline at 555-555-5555 immediately!";
+                    }
+                    // if all three situation are present but NOT location factors
+                } else if (this.symptom[0] && this.symptom[1] && this.symptom[2] && !(this.location[0] || this.location[1])) {
+                    return "Stay home and monitor your situation. Contact your physician if the situation persist.";
+                    // if any of the situation are present and they have any location factors
+                } else if ((this.symptom[0] || this.symptom[1] || this.symptom[2]) && (this.location[0] || this.location[1])) {
+                    return "PLEASE STAY HOME! If you get any more situation then contact the CDC COVID-19 hotline at 555-555-5555!";
+                    // if they have ANY situation at all (but not location factors)
+                } else if (this.symptom[0] || this.symptom[1] || this.symptom[2]) {
+                    return "If you get any more situation or if your current situation get worse then contact your physician.";
+                } else { // low virus threat
+                    return "You seem to be fine.  Keep washing your hands!";
+                }
+            }
+            // return patient potential threat score (real number) - this is just an example of what you can do with symptom and location weights.
+            this.score = function () {
+                var score_s = 0.0;
+                var score_r = 0.0;
+                // for all situation (loaded from the XML file)
+                for (var x = 0; x < situation.length; x++) {
+                    if (this.symptom[x]) { // if patient has this symptom
+                        score_s += Number(situation[x].weight); // then add the weight to their total
+                    }
+                }
+                // for all locations (loaded from the XML file)
+                for (var x = 0; x < locations.length; x++) {
+                    if (this.location[x]) { // if patient has this location
+                        score_r += Number(locations[x].weight); // then add the weight to their total
+                    }
+                }
+                // These scores could be used in some logic, for example to determine threat levels.  For now we just output them to console.
+                console.log("DEBUG: score_s=" + score_s + " score_r=" + score_r);
+                return score_s + score_r;
+            }
+        }
+
+        // process the form data upon submit
+        function process_form() {
+            // get form object
+            var fm = document.getElementById("my_form");
+            // get output object
+            var out = document.getElementById("output");
+            // instantiate patient object
+            var patient = new Patient(fm);
+            //console.log("Debug:" + JSON.stringify(patient));
+
+            // set background color using patient object severity method
+            out.style.background = patient.severity();
+            // display recommendations based on input values using diagnose method
+            out.innerHTML = patient.diagnose();
+            var score = patient.score();
+        }
+
+        // load symptom and location data from the xml file - executed automatically when body is loaded
+        function load_data() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //console.log(this.responseXML);
+                    var sm = this.responseXML.getElementsByTagName("symptom");
+                    for (var x = 0; x < sm.length; x++) {
+                        var symptom = new Symptom(
+                            sm[x].attributes['id'].value,
+                            sm[x].attributes['weight'].value,
+                            sm[x].attributes['name'].value,
+                            sm[x].attributes['label'].value,
+                            sm[x].innerHTML);
+                        situation.push(symptom); // situation is defined under a global scope
+                    }
+                    //console.log(situation);
+                    var rk = this.responseXML.getElementsByTagName("location");
+                    for (var x = 0; x < rk.length; x++) {
+                        var location = new location(
+                            rk[x].attributes['id'].value,
+                            rk[x].attributes['weight'].value,
+                            rk[x].attributes['name'].value,
+                            rk[x].attributes['label'].value,
+                            rk[x].innerHTML);
+                        locations.push(location); // situation is defined under a global scope
+                    }
+                    //console.log(locations);
+
+                    // dynamically generate HTML situation checkboxes
+                    var sms = "";
+                    for (var x = 0; x < situation.length; x++) {
+                        sms = sms + "<div class='form-group form-check' onmouseover='display_description(" + x + ", 0)' onmouseout='display_description(-1,0)'>";
+                        sms = sms + "<input type='checkbox' class='form-check-input' id='symptom" + situation[x].id + "'>";
+                        sms = sms + "<label class='form-check-label' for='symptom" + situation[x].id + "'>" + situation[x].label + "</label></div>";
+                    }
+                    document.getElementById("container_situation").innerHTML = sms;
+                    // dynamically generate HTML location factors checkboxes
+                    var rks = "";
+                    for (var x = 0; x < locations.length; x++) {
+                        rks = rks + "<div class='form-group form-check' onmouseover='display_description(" + x + ",1)' onmouseout='display_description(-1,1)'>";
+                        rks = rks + "<input type='checkbox' class='form-check-input' id='location" + locations[x].id + "'>";
+                        rks = rks + "<label class='form-check-label' for='location" + locations[x].id + "'>" + locations[x].label + "</label></div>";
+                    }
+                    document.getElementById("container_locations").innerHTML = rks;
+                }
+            };
+            xhttp.open("GET", "data.xml", true);
+            xhttp.send();
+        }
+        // use general output area to display symptom details
+        function display_description(idx, type) {
+            if (Number(idx) >= 0) {
+                if (type == 0) {
+                    document.getElementById("details").innerHTML = situation[idx].description;
+                } else {
+                    document.getElementById("details").innerHTML = locations[idx].description;
+                }
+            } else {
+                document.getElementById("details").innerHTML = "";
+            }
+        }
+    </script>
+</head>
+
+<body onload="load_data()">
+    <div id="container">
+        <h1>COVID-19 Informational Page Example</h1>
+        <form id="my_form">
+            <!-- individual info -->
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+            </div>
+            <div class="form-group">
+                <label for="age">Role as Librarian</label>
+                <select class="form-control" id="role">
+                    <option value="0">Please select your librarian role type category</option>
+                    <option value="1">Public Librarian - Adult Services</option>
+                    <option value="2">Public Librarian - Youth Services</option>
+                    <option value="3">School Librarian - K-5</option>
+                    <option value="4">School Librarian - K-5</option>
+                    <option value="5">Other</option>
+                </select>
+            </div>
+            <!-- situation -->
+            <h4>Please check all that apply:</h4>
+            <!-- recommendation output area -->
+            <div id="details">
+            </div>
+            <div id="container_situation">
+            </div>
+            <!-- location assessment -->
+            <div id="container_locations">
+            </div>
+            <button type="button" class="btn btn-primary" onclick="process_form()">Submit</button>
+            <!-- recommendation output area -->
+            <div id="output">
+            </div>
+
+        </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
