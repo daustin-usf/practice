@@ -36,11 +36,11 @@
         }
     </style>
     <script>
-        var situation = new Array(); // this is a global variable for symptom defnitions
+        var situation = new Array(); // this is a global variable for situation defnitions
         var locations = new Array(); // this is a global array for location factor definitions
 
-        // Symptom Object definition
-        function Symptom(id, weight, name, label, description) {
+        // situation Object definition
+        function situation(id, weight, name, label, description) {
             this.id = id;
             this.weight = weight;
             this.name = name;
@@ -58,7 +58,7 @@
         // Patient Object definition
         function Patient(fm) {
             // constructor
-            this.symptom = new Array(); // array of true/false values corresponding to situation
+            this.situation = new Array(); // array of true/false values corresponding to situation
             this.location = new Array(); // array of true/false vales corresponding to location factors
 
             this.name = fm.name.value;
@@ -68,10 +68,10 @@
                 we will use arrays instead of variables to store this data
             */
             // extract a list of checkboxes from the div
-            var list_symptom = document.querySelectorAll("#container_situation input[type='checkbox']");
-            // traverse the list and set patient's symptom to true/false value
-            for (var x=0; x < list_symptom.length; x++) {
-                this.symptom[x] = list_symptom[x].checked;
+            var list_situation = document.querySelectorAll("#container_situation input[type='checkbox']");
+            // traverse the list and set patient's situation to true/false value
+            for (var x=0; x < list_situation.length; x++) {
+                this.situation[x] = list_situation[x].checked;
             }
             // do the same for locations
             var list_location = document.querySelectorAll("#container_locations input[type='checkbox']");
@@ -79,19 +79,19 @@
             for (var x=0; x < list_location.length; x++) {
                 this.location[x] = list_location[x].checked;
             }
-            //console.log(this.symptom);
+            //console.log(this.situation);
             //console.log(this.location);
 
             // return potential severity color of this case
             this.severity = function () {
                 // if all three situation and any one of location factors are present
-                if (this.symptom[0] && this.symptom[1] && this.symptom[2] && (this.location[0] || this.location[1])) {
+                if (this.situation[0] && this.situation[1] && this.situation[2] && (this.location[0] || this.location[1])) {
                     return "#e99883"; // high red
                     // if all three situation are present but NOT the location factors
-                } else if (this.symptom[0] && this.symptom[1] && this.symptom[2] && !(this.location[0] || this.location[1])) {
+                } else if (this.situation[0] && this.situation[1] && this.situation[2] && !(this.location[0] || this.location[1])) {
                     return "#f1f0a3"; // medium yellow
                     // if any of the situation are present
-                } else if (this.symptom[0] || this.symptom[1] || this.symptom[2]) {
+                } else if (this.situation[0] || this.situation[1] || this.situation[2]) {
                     return "#caeeca"; // low green
                 } else { // gray
                     return "#dddddd";
@@ -101,7 +101,7 @@
             this.diagnose = function () {
                 /*  NOTE: We have changed the initial code to load situation and locationS from an XML file.
                     The original logic below hasn't changed and it EXPECTS:
-                        symptom [0]=fever, [1]=cough, [2]=breath, AND location [0]=travel, [1]=contact.
+                        situation [0]=fever, [1]=cough, [2]=breath, AND location [0]=travel, [1]=contact.
                     All other locations are currently not used to determin threat levels and make recommendations.
 
                     The following logic/code would have to change accomodate a variable (and potentially large) number of situation and locationS as mentioned in class.
@@ -113,36 +113,36 @@
                 */
 
                 // if NONE of situation are present but they have been potentially exposed
-                if (!(this.symptom[0] || this.symptom[1] || this.symptom[2]) && this.location[1]) {
+                if (!(this.situation[0] || this.situation[1] || this.situation[2]) && this.location[1]) {
                     return "You do not show any situation, however, if you suspect that you might have been exposed to COVID-19 then please contact your local authories or call the CDC COVID-19 hotline at 555-555-5555.";
                 }
                 // if all three situation and any one of the location factors are present
-                if (this.symptom[0] && this.symptom[1] && this.symptom[2] && (this.location[0] || this.location[1])) {
+                if (this.situation[0] && this.situation[1] && this.situation[2] && (this.location[0] || this.location[1])) {
                     if (this.age == 65) { // elderly are at much higher location
                         return "Call your local emergency services immediately!";
                     } else {
                         return "Call the CDC COVID-19 hotline at 555-555-5555 immediately!";
                     }
                     // if all three situation are present but NOT location factors
-                } else if (this.symptom[0] && this.symptom[1] && this.symptom[2] && !(this.location[0] || this.location[1])) {
+                } else if (this.situation[0] && this.situation[1] && this.situation[2] && !(this.location[0] || this.location[1])) {
                     return "Stay home and monitor your situation. Contact your physician if the situation persist.";
                     // if any of the situation are present and they have any location factors
-                } else if ((this.symptom[0] || this.symptom[1] || this.symptom[2]) && (this.location[0] || this.location[1])) {
+                } else if ((this.situation[0] || this.situation[1] || this.situation[2]) && (this.location[0] || this.location[1])) {
                     return "PLEASE STAY HOME! If you get any more situation then contact the CDC COVID-19 hotline at 555-555-5555!";
                     // if they have ANY situation at all (but not location factors)
-                } else if (this.symptom[0] || this.symptom[1] || this.symptom[2]) {
+                } else if (this.situation[0] || this.situation[1] || this.situation[2]) {
                     return "If you get any more situation or if your current situation get worse then contact your physician.";
                 } else { // low virus threat
                     return "You seem to be fine.  Keep washing your hands!";
                 }
             }
-            // return patient potential threat score (real number) - this is just an example of what you can do with symptom and location weights.
+            // return patient potential threat score (real number) - this is just an example of what you can do with situation and location weights.
             this.score = function () {
                 var score_s = 0.0;
                 var score_r = 0.0;
                 // for all situation (loaded from the XML file)
                 for (var x = 0; x < situation.length; x++) {
-                    if (this.symptom[x]) { // if patient has this symptom
+                    if (this.situation[x]) { // if patient has this situation
                         score_s += Number(situation[x].weight); // then add the weight to their total
                     }
                 }
@@ -175,21 +175,21 @@
             var score = patient.score();
         }
 
-        // load symptom and location data from the xml file - executed automatically when body is loaded
+        // load situation and location data from the xml file - executed automatically when body is loaded
         function load_data() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     //console.log(this.responseXML);
-                    var sm = this.responseXML.getElementsByTagName("symptom");
+                    var sm = this.responseXML.getElementsByTagName("situation");
                     for (var x = 0; x < sm.length; x++) {
-                        var symptom = new Symptom(
+                        var situation = new situation(
                             sm[x].attributes['id'].value,
                             sm[x].attributes['weight'].value,
                             sm[x].attributes['name'].value,
                             sm[x].attributes['label'].value,
                             sm[x].innerHTML);
-                        situation.push(symptom); // situation is defined under a global scope
+                        situation.push(situation); // situation is defined under a global scope
                     }
                     //console.log(situation);
                     var rk = this.responseXML.getElementsByTagName("location");
@@ -208,8 +208,8 @@
                     var sms = "";
                     for (var x = 0; x < situation.length; x++) {
                         sms = sms + "<div class='form-group form-check' onmouseover='display_description(" + x + ", 0)' onmouseout='display_description(-1,0)'>";
-                        sms = sms + "<input type='checkbox' class='form-check-input' id='symptom" + situation[x].id + "'>";
-                        sms = sms + "<label class='form-check-label' for='symptom" + situation[x].id + "'>" + situation[x].label + "</label></div>";
+                        sms = sms + "<input type='checkbox' class='form-check-input' id='situation" + situation[x].id + "'>";
+                        sms = sms + "<label class='form-check-label' for='situation" + situation[x].id + "'>" + situation[x].label + "</label></div>";
                     }
                     document.getElementById("container_situation").innerHTML = sms;
                     // dynamically generate HTML location factors checkboxes
@@ -225,7 +225,7 @@
             xhttp.open("GET", "data.xml", true);
             xhttp.send();
         }
-        // use general output area to display symptom details
+        // use general output area to display situation details
         function display_description(idx, type) {
             if (Number(idx) >= 0) {
                 if (type == 0) {
