@@ -42,7 +42,7 @@
 	      'Jorah Mormont',
 	      'John Snow',
 	      'Jamie Lannister',
-	      'Oleana Tyrell',
+	      'The Night King',
 	      'Khal Drogo',
 	      'Ned Stark',
 	      'Samwell Tarly',
@@ -66,7 +66,7 @@
             prev_i = i;
 
             //picks got character and assigns it to var gotcharacter
-            var fortune = fortunes[i];
+            var gotcharacter = characters[i];
 
             document.getElementById("gotcharacter").innerHTML = "#" + i + " - " + gotcharacter;
         }
@@ -77,7 +77,7 @@
     <!--background container-->
     <div class="fluid-container">
         <div class="jumbotron text-center">
-            <img src="GoT.jpg" alt="people talking using various technology" width="80%">
+            <img src="GoT.jpg" alt="Game of Thrones Characters" width="80%">
         </div>
         <h1>Welcome to GoT Character Picker</h1>
 
@@ -85,7 +85,7 @@
 
         <!--div for gotcharacter output-->
         <div id="main">
-            <div id="fortune">The Wisdom of the Scholars Awaits...</div>
+            <div id="fortune">Winter is coming...See who you are!</div>
             <!--button for get gotcharacter-->
         </div>
         <div class="button">
