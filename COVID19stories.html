@@ -1,7 +1,7 @@
-w<doctype! html>
+<doctype! html>
 <html lang="en">
-<!-- My practice is based on Dr. Drobisz's week 7 example and Amanda Fye's contact form-->
-    <!-- The purpose of this form is to generate interest from librarian's who want to share their COVID-19 stories regarding their roles.-->
+<!-- This HW practice is based on Dr. Drobisz's week 7 example and Amanda Fye's contact form-->
+    <!-- The purpose of this form is to generate interest from public librarian's who want to share their COVID-19 stories regarding their roles.-->
 
 <html lang="en">
 <head>
@@ -45,24 +45,24 @@ w<doctype! html>
 		// Defining our constructors
         this.name = fm.name.value;
         this.email = fm.email.value;
-        this.age = Number(fm.age.value);
-        this.option1 = fm.option1.checked; // Injured
-        this.option2 = fm.option2.checked; // Not injured
-        this.option3 = fm.option3.checked; // Unsure
-        this.role1 = fm.role1.checked; // Driver
-        this.role2 = fm.role2.checked; // Passenger/other
+        this.age = Number(fm.role.value);
+        this.option1 = fm.option1.checked; // working in library
+        this.option2 = fm.option2.checked; // working at home or another location
+        this.option3 = fm.option3.checked; // not working
+        this.role1 = fm.role1.checked; // Traditional/official role
+        this.role2 = fm.role2.checked; // Non-traditional/other role
 
 // Return box colors
         this.accident = function () {
-        // Injured and driver or passenger
+        // working in library in a traditional/official role
         	if (this.option1 && (this.role1 || this.role2)) {
      			return "#e7e7e7";
 			}
-		// Not injured and driver or passenger
+		// Not working at the library in a traditional/official role
 	      	if (this.option2 && (this.role1 || this.role2)) {
 	     		return "#f04b4c";
 			}
-	    // Unsure if injured and driver or passenger
+	    // Not working in a traditional or non-traditional role
 	      	if (this.option3 && (this.role1 || this.role2)) {
 	     		return "#3d6098";
 			}	    
@@ -77,14 +77,14 @@ w<doctype! html>
 				}
 //Injured and passenger
 				if (this.option1 && this.role2) {
-					return "Please contact us about your role as a public librarian in youth services and what you are doing to support your library during COVID-19."
+					return "Please contact us about your non-traditional role as a public librarian in youth services and what you are doing to support your library during COVID-19."
 				}
 //Not injured and driver
 				if (this.option2 && this.role1) {
-                    if (this.role == 5) { // elderly are more likely to be injured
-                        return "Even though you may .";
+                    if (this.role == 5) { // non-working may have other stories to share
+                        return "Even though you may not be working, how is COVID-19 affecting your library or perspective of traditional librarians?";
 					} else if (this.option2 && this.role1) {
-							return "Even though you may feel fine now, it is important to ensure you are checked for possible injuries. We recommend seeing your doctor and contacting us at 813-555-5555 to set up a free consultation to review your case and determine the best route to ensure any potential injuries are taken care of."
+							return "Even though you may not be working, how is COVID-19 affecting your library or perspective of new ways to serve the community?"
 						}
 				}				
 //Not injured and passenger
