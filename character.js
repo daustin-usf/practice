@@ -16,8 +16,8 @@ var characters = [
 
 //pull random from array
 function process() {
-	var randomNumber = Math.floor(Math.random() * (GoT.length));
-	document.getElementById('display').innerHTML = GoT[randomNumber];
+	var randomNumber = Math.floor(Math.random() * (characters.length));
+	document.getElementById('display').innerHTML = characters[randomNumber];
 }
 
 //date
