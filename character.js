@@ -1,17 +1,17 @@
 //array
 var characters = [
-	'Chick-Fil-A',
-	'Applebees',
-	'Chipotle',
-	'Berns Steakhouse',
-	'Boca',
-	'Fresh Kitchen',
-	'Olive Garden',
-	'Stein & Vine',
-	'Blackrock',
-	'Miguels',
-	'Better Byrd',
-	'Whiskey Cake'
+	'Aria Stark',
+	'Danearys Targaryen',
+	'Jorah Mormont',
+	'John Snow',
+	'Jamie Lannister',
+	'Oleana Tyrell',
+	'Khal Drogo',
+	'Ned Stark',
+	'Samwell Tarly',
+	'Hodor',
+	'Tyrion Lannister',
+	'Gendry
 ]
 
 //pull random from array
