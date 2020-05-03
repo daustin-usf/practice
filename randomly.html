@@ -36,16 +36,16 @@
     </style>
     <script>
         var gotcharacters = [
-              'Aria Stark',
-	      'Danearys Targaryen',
-	      'John Snow',
-	      'Jamie Lannister',
-	      'Khal Drogo',
-	      'Ned Stark',
-	      'Samwell Tarly',
-	      'Hodor',
-	      'Tyrion Lannister',
-	      'Brienne of Tarth'
+              "Aria Stark",
+	      "Danearys Targaryen",
+	      "John Snow",
+	      "Jamie Lannister",
+	      "Cersei Lannister",
+	      "Ned Stark",
+	      "Samwell Tarly",
+	      "Hodor",
+	      "Tyrion Lannister",
+	      "Brienne of Tarth"
         ];
 
         var prev_i = -1; // initialize previous index to -1
@@ -61,7 +61,7 @@
             // set the value of previous index to the currently selected index
             prev_i = i;
 
-            //picks got character and assigns it to var gotcharacter
+            //picks got character and assigns it to var gotcharacters
             var gotcharacter = gotcharacters[i];
 
             document.getElementById("gotcharacter").innerHTML = "#" + i + " - " + gotcharacter;
