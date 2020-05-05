@@ -79,6 +79,20 @@
             <h2>Explore a school:</h2>
             <p>Click on a school to learn more about it:<strong></strong></p>
             <div class="w3-bar">
+                 <div id="Dropdown_menu" class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select a school
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                          <li><a onClick="onClick_lincoln(); return false;" href="#">Xavier's School for Gifted Youngsters</a></li>
+                          <li><a onClick="onClick_xavier(); return false;" href="#">Miss Peregrine's Home for Peculiar Children</a></li>
+                          <li><a onClick="onClick_hogwarts(); return false;" href="#">Hogwart's Academy</a></li>
+                        </ul>
+                      </div>
+                      <div id="School_info">School Info:</div>
+                      <button id="Submit_button" type="submit" class="btn btn-default">Submit</button>
+                      <div id="Submit_confirm"></div>
+                    </form>
+                
 
 
                 <a class="btn btn-primary" href="https://marvel.fandom.com/wiki/Xavier%27s_School_for_Gifted_Youngsters" "target="_blank"> Xavier School for Giftd Youngsters</a>
@@ -125,20 +139,7 @@
     </div>
 </body>
 
-                      <div id="Dropdown_menu" class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select a school
-                        <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                          <li><a onClick="onClick_lincoln(); return false;" href="#">Xavier's School for Gifted Youngsters</a></li>
-                          <li><a onClick="onClick_xavier(); return false;" href="#">Miss Peregrine's Home for Peculiar Children</a></li>
-                          <li><a onClick="onClick_hogwarts(); return false;" href="#">Hogwart's Academy</a></li>
-                        </ul>
-                      </div>
-                      <div id="School_info">School Info:</div>
-                      <button id="Submit_button" type="submit" class="btn btn-default">Submit</button>
-                      <div id="Submit_confirm"></div>
-                    </form>
-                
+                     
             </div>
 
         </div>
