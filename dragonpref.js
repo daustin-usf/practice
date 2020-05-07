@@ -48,6 +48,8 @@ function Dragon(fm) {
 
 var d1 = {
     name: "Have fun riding your dragon! Drogon loves to give rides!"
+     att: "Drogon is spirited, loyal, and brave",
+    des: "He wants to protect and please you.”"
 }
 var d2 = {
     name: "Boston Terrier",
