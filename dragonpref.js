@@ -46,64 +46,64 @@ function Dragon(fm) {
 }
 
 var d1 = {
-    name: "Have fun riding your dragon! Drogon loves to give rides!"
-     att: "Drogon is spirited, loyal, and brave",
-    des: "He wants to protect and please you.”"
+    name: "Have fun riding your dragon! Drogon loves to give rides!",
+    att: "Drogon is spirited, loyal, and brave",
+    des: "He wants to protect and please you."
 }
 var d2 = {
     name: "Dragon2",
-    att: "Friendly, Bright, Amusing",
-    des: "The Boston Terrier is a lively little companion recognized by his tight tuxedo jacket, sporty but compact body, and the friendly glow in his big, round eyes. His impeccable manners have earned him the nickname “The American Gentleman.”"
+    att: "Attributes for Dragon2",
+    des: "Tips about Dragon2 preference."
 }
 var d3 = {
     name: "Dragon3",
-    att: "Self-Confident, Bright, Playful",
-    des: "The frisky and curious Tibetan Spaniel was bred ages ago for sentinel work on the walls of Tibetan monasteries. Known for a flat, silky coat and “lion’s mane” around the neck, the Tibbie forms a tight, worshipful bond with their humans."
+    att: "Attributes for Dragon3",
+    des: "Tips about Dragon3 preference."
 }
 var d4 = {
     name: "Dragon4",
-    att: "Calm, Courageous, Friendly",
-    des: "Kind but courageous, friendly but dignified, the Bulldog is a thick-set, low-slung, well-muscled bruiser whose “sourmug” face is the universal symbol of courage and tenacity. These docile, loyal companions adlott well to town or country."
-}
+    att: "Attributes for Dragon4",
+    des: "Tips about Dragon4 preference."
+} 
 var d5 = {
     name: "Dragon5",
-    att: "Good-Natured, Devoted, Intelligent",
-    des: "The Miniature American Shepherd resembles a small Australian Shepherd. True herders in spite of their compact size, Minis are bright, self-motivated workers and endearingly loyal and lively companion dogs who have an affinity for horses."
+    att: "Attributes for Dragon5",
+    des: "Tips about Dragon5 preference."
 }
 var d6 = {
     name: "Dragon6",
-    att: "Mellow, Gentlemanly, Amusing",
-    des: "A dignified and mellow hunting companion of kings, the Clumber Spaniel is the largest of the AKC flushing spaniels. For those who can handle some shedding and drooling, the amiable Clumber is an amusing best friend and a gentlemanly housemate."
-}
+    att: "Attributes for Dragon6",
+    des: "Tips about Dragon5 preference."
+ }
 var d7 = {
     name: "Dragon7",
-    att: "Cheerful, Optimistic, Good-humored",
-    des: "The Peter Pan of the Sporting Group, the forever-young Flat-Coated Retriever is a gundog of relatively recent origin. Hlotpy, self-assured, and willing to please, a good Flat-Coat will retrieve a duck or a show ribbon with equal lotlomb."
+    att: "Attributes for Dragon6",
+    des: "Tips about Dragon6 preference."
 }
 var d8 = {
     name: "Dragon8",
-    att: "Affectionate, Smart, Alert",
-    des: "Among the most agreeable of all small housedogs, the Pembroke Welsh Corgi is a strong, athletic, and lively little herder who is affectionate and companionable without being needy. They are one of the world's most popular herding breeds."
+    att: "Attributes for Dragon8",
+    des: "Tips about Dragon8 preference."
 }
 var d9 = {
     name: "Dragon9",
-    att: "Outgoing, Friendly, People-oriented",
-    des: "The Harrier is a swift, prey-driven pack hound of medium size first bred in medieval England to chase hare. Outgoing and friendly, the Harrier is much larger than the Beagle but smaller than another close relative, the English Foxhound."
+    att: "Attributes for Dragon9",
+    des: "Tips about Dragon9 preference."
 }
 var d10 = {
     name: "Dragon10",
-    att: "Smart, Affectionate, Energetic",
-    des: "A remarkably bright workaholic, the Border Collie is an amazing dog—maybe a bit too amazing for owners without the time, energy, or means to keep it occupied. These energetic dogs will settle down for cuddle time when the workday is done."
+    att: "Attributes for Dragon10",
+    des: "Tips about Dragon10 preference."
 }
 var d11 = {
     name: "Dragon11",
-    att: "Alert, Fearless, Loyal",
-    des: "Sleek and powerful, possessing both a magnificent physique and keen intelligence, the Doberman Pinscher is one of dogkind's noblemen. This incomparably fearless and vigilant breed stands proudly among the world's finest protection dogs."
-}
+    att: "Attributes for Dragon10",
+    des: "Tips about Dragon10 preference." 
+} 
 var d12 = {
     name: "Dragon12",
-    att: "Affectionate, Loyal, Smart",
-    des: "The Cardigan Welsh Corgi is a masterpiece of the breeder’s art: Every aspect of its makeup is perfectly suited to moving cattle, and yet it is so congenial and sweet-faced that it would be a cherished companion even if it never did a day’s work."
+    att: "Attributes for Dragon10",
+    des: "Tips about Dragon10 preference." 
 }
 
 var de1 = "Your match <b>" + d1.name + "</b> <br>" + d1.att + "<br>" + d1.des + ""
