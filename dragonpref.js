@@ -21,25 +21,25 @@ function Dragon(fm) {
             return de1; // yes, lots of time, drogon
         } else if (this.input_feelings == 'yes' && this.input_time == 'lot' && this.input_favorite == 'smaug') {
             return de2; // yes, lots of time,  smaug
-        } else if (this.input_feelings=='yes' && this.input_time=='little' && this.input_favorite=='drogon') {
+        } else if (this.input_feelings=='yes' && this.input_time == 'little' && this.input_favorite=='drogon') {
             return de3; // yes, just a little time, drogon
-        } else if (this.input_feelings=='yes' && this.input_time=='little' && this.input_favorite=='smaug') {
+        } else if (this.input_feelings=='yes' && this.input_time == 'little' && this.input_favorite=='smaug') {
             return de4; // yes, just a little time, smaug
-        } else if (this.input_feelings=='yes' && this.input_time=='nowant' && this.input_favorite=='drogon') {
+        } else if (this.input_feelings=='yes' && this.input_time == 'nowant' && this.input_favorite=='drogon') {
             return de5; // yes, absolutely no time, drogon
-        } else if (this.input_feelings=='yes' && this.input_time=='nowant' && this.input_favorite=='smaug') {
+        } else if (this.input_feelings=='yes' && this.input_time == 'nowant' && this.input_favorite=='smaug') {
             return de6; // yes, absolutely no time, smaug
-        } else if (this.input_feelings=='no' && this.input_time=='lot' && this.input_favorite=='drogon') {
+        } else if (this.input_feelings=='no' && this.input_time == 'lot' && this.input_favorite=='drogon') {
             return de7; // no, lots of time, drogon
-        } else if (this.input_feelings=='no' && this.input_time=='lot' && this.input_favorite=='smaug') {
+        } else if (this.input_feelings=='no' && this.input_time == 'lot' && this.input_favorite=='smaug') {
             return de8; // no, lots of time, smaug
-        } else if (this.input_feelings=='no' && this.input_time=='little' && this.input_favorite=='drogon') {
+        } else if (this.input_feelings=='no' && this.input_time == 'little' && this.input_favorite=='drogon') {
             return de9; // no, just a little time, drogon
-        } else if (this.input_feelings=='no' && this.input_time=='little' && this.input_favorite=='smaug') {
+        } else if (this.input_feelings=='no' && this.input_time == 'little' && this.input_favorite=='smaug') {
             return de10; // no, just a little time, smaug
-        } else if (this.input_feelings=='no' && this.input_time=='nowant' && this.input_favorite=='drogon') {
+        } else if (this.input_feelings=='no' && this.input_time == 'nowant' && this.input_favorite=='drogon') {
             return de11; // no, absolutely no time, drogon
-        } else if (this.input_feelings=='no' && this.input_time=='nowant' && this.input_favorite=='smaug') {
+        } else if (this.input_feelings=='no' && this.input_time == 'nowant' && this.input_favorite=='smaug') {
             return de12; // no, absolutely no time, smaug
         }
     }
