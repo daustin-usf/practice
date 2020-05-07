@@ -1,5 +1,4 @@
 // JavaScript Document
-// JavaScript Document
 function process_form() {
     // get form object
     var fm = document.getElementById("my_form");
@@ -13,7 +12,7 @@ function process_form() {
 
 function Dragon(fm) {
     // constructor
-    this.input_exp = fm.input_feelings.value;
+    this.input_feelings = fm.input_feelings.value;
     this.input_time = fm.input_time.value;
     this.input_favorite = fm.input_favorite.value;
 
