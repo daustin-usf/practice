@@ -17,7 +17,7 @@ function Dragon(fm) {
 
     this.sort = function () {
         // sort result based on input
-        if (this.input_feelings == 'yes' && this.input_time == 'lot' && this.input_favorite == 'yes') {
+        if (this.input_feelings == 'yes' && this.input_time == 'lot' && this.input_favorite == 'drogon') {
             return de1; // yes, lots of time, drogon
         } else if (this.input_feelings == 'yes' && this.input_time == 'lot' && this.input_favorite == 'smaug') {
             return de2; // yes, lots of time,  smaug
