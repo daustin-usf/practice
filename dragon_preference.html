@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>WK7</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="dragonpref.js"></script>
+    <title>What type of dragon would you choose?</title>
+</head>
+
+<body>
+	<!--thanks to Eric for code and corgi inspiration-->
+    <div class="fluid-container">
+        <div class="jumbotron text-center">
+            <img src="dragon993x270.png" alt="dragons in literature banner">
+            <div class="centered">
+                <h1>Which type would you choose? The hero or the villian?</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <form id="my_form">
+            <div class="form-group">
+                <label for="input_">What is your opinion about dragons? Would you want one as a pet?</label>
+                <select class="form-control" id="input_feelings">
+                    <option value="none">Please select</option>
+                    <option value="yes">Yes, I love dragons!</option>
+                    <option value="no">No! They are evil mythical creatures.</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="input_time">How much time can you spend with your dragon?</label>
+                <select class="form-control" id="input_time">
+                    <option value="none">Please select</option>
+                    <option value="lot">All the time in the world!</option>
+                    <option value="little">Very little time, whether I like them or not.</option>
+                    <option value="nowant">No time! Dragons possess evil magic!</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="input_favorite">If you had to choose, who is your favorite dragon?</label>
+                <div class="radio">
+                    <label><input type="radio" name="optradio" value="drogon" id="input_favorite">Drogon from Game of Thrones</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="optradio" value="smaug" id="input_favorite">Smaug from the Hobbit</label>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="process_form()">Submit</button>
+        </form>
+    </div>
+    <br>
+    <div class="container">
+        <p id="display"></p>
+    </div>
+
+</body>
+
+</html>
